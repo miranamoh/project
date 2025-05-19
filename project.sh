@@ -55,3 +55,28 @@ echo ""
 echo "Fetching suggestions for you..."
 echo "-------------------------------—-"
 
+print=0
+    while read -r line; do
+      # Check if the line matches the section (school or higher)
+      if [[ "$line" == "$edu_section" ]]; then
+        print=1
+        continue
+      fi
+      # If we encounter another section, stop printing
+      if [[ "$line" =~ "##" && "$line" != "$edu_section" ]]; then
+        print=0
+      fi
+
+      # Filtering logic shared by both education and entertainment
+      if [ $print -eq 1 ]; then
+        if [ -z "$line" ]; then
+          continue
+        fi
+        dest_budget=$(echo "$line" | sed 's/.*- *//')  # Extract the budget
+        if [ "$dest_budget" == "$budget" ]; then
+          dest_name=$(echo "$line" | sed 's/-.*//')  # Extract the destination name
+          echo "- $dest_name"
+        fi
+      fi
+    done < "$DATA_FILE"
+    ;; 
