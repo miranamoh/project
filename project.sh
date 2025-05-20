@@ -63,7 +63,7 @@ case $goal_lower in
 
     read -p "Type of education (School/Higher): " edu_type
     
- # Convert input to lowercase
+ # Convert input to lower case
     edu_type_lower=$(echo "$edu_type" | tr '[:upper:]' '[:lower:]')
 
   # Validate eduType & set corresponding section header
