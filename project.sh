@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash 
 # This line specifies that the program will be executed by Bash.
-#:File check + user input
+#File check + user input
 # Filename to check
 DATA_FILE="Data.txt"
 
